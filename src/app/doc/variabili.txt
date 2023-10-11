@@ -1,0 +1,21 @@
+1. title: Una stringa che rappresenta il titolo dell'applicazione, impostata su "Angular + Firebase".
+
+2. users: Un array di oggetti che rappresentano gli utenti. Viene inizializzato come un array vuoto [].
+
+3. selectedUser: Un oggetto che rappresenta l'utente selezionato. Inizializzato come un oggetto vuoto {}.
+
+4. isInserting: Una variabile booleana che indica se l'utente sta inserendo un nuovo utente. Inizializzato a true.
+
+5. isEditing: Una variabile booleana che indica se l'utente sta modificando un utente esistente. Inizializzato a false.
+
+6. newUser: Un oggetto che rappresenta il nuovo utente che l'utente sta cercando di aggiungere. Inizializzato come un oggetto vuoto {}.
+
+Queste variabili d'ambiente vengono utilizzate per gestire lo stato dell'applicazione e determinare cosa visualizzare e come rispondere alle azioni dell'utente.
+
+Ad esempio, 'isInserting' e 'isEditing' vengono utilizzati per controllare se l'applicazione si trova in modalità di inserimento di un nuovo utente o in modalità di modifica di un utente esistente.
+
+'selectedUser' viene utilizzato per mantenere traccia dell'utente che è stato selezionato per la modifica o la visualizzazione dei dettagli.
+
+newUser viene utilizzato per mantenere traccia dei dati del nuovo utente che l'utente sta cercando di aggiungere.
+
+Queste variabili vengono utilizzate in combinazione con i metodi del componente per gestire le operazioni di inserimento, modifica, visualizzazione, cancellazione e altro ancora. Ad esempio, i metodi come addUser(), updateUser(), deleteUser(), ecc., utilizzano queste variabili d'ambiente per determinare quale azione eseguire e con quale utente interagire.
