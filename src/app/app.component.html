@@ -10,8 +10,8 @@
     <thead>
       <tr>
         <th scope="col">ID / Codice Univoco</th>
-        <th scope="col">Nome</th>
         <th scope="col">Cognome</th>
+        <th scope="col">Nome</th>
         <th scope="col">Azioni</th>
       </tr>
     </thead>
@@ -21,8 +21,8 @@
       <!-- Ciclo gli 'utenti' dal Database -->
       <tr *ngFor="let user of users">
         <th scope="row">{{ user.id }}</th> <!-- ID -->
-        <td>{{ user.nome }}</td> <!-- Nome -->
         <td>{{ user.cognome }}</td> <!-- Cognome -->
+        <td>{{ user.nome }}</td> <!-- Nome -->
         <td>
           <button class="me-2" (click)="updateUser(user)">Update</button> <!-- Tasto Modifica -->
           <button class="me-2" (click)="deleteUser(user.id)">Delete</button> <!-- Tasto Elimina -->
@@ -44,7 +44,7 @@
         <label for="newCognome" class="form-label">Cognome</label>
         <input type="text" class="form-control" id="newCognome" [(ngModel)]="newUser.cognome" name="newCognome">
       </div>
-      <button type="submit" class="btn btn-primary">Aggiungi Utente</button>
+      <button type="submit" class="btn btn-primary">Aggiungi Utente</button> <!-- Tasto Aggiungi -->
     </form>
   </div>
 </div>
@@ -61,8 +61,8 @@
       <label for="editCognome" class="form-label">Cognome</label>
       <input type="text" class="form-control" id="editCognome" [(ngModel)]="selectedUser.cognome" name="editCognome">
     </div>
-    <button type="submit" class="btn btn-primary">Salva Modifiche</button>
-    <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Annulla</button>
+    <button type="submit" class="btn btn-primary">Salva Modifiche</button> <!-- Tasto Salva Modifica -->
+    <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Annulla</button> <!-- Tasto Annulla -->
   </form>
 </div>
 
@@ -77,5 +77,5 @@
     <label for="viewCognome" class="form-label">Cognome</label>
     <input type="text" class="form-control" id="viewCognome" [(ngModel)]="selectedUser.cognome" name="viewCognome" disabled>
   </div>
-  <button type="button" class="btn btn-secondary" (click)="cancelView()">Chiudi Dettagli</button>
+  <button type="button" class="btn btn-secondary" (click)="cancelView()">Chiudi Dettagli</button> <!-- Tasto Chiudi -->
 </div>

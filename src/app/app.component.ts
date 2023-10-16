@@ -12,8 +12,8 @@ export class AppComponent implements OnInit{
   title = 'Angular + Firebase';
   users: any[] = [];  // Inizializza un array di oggetti 'users'
   selectedUser: any = {};  // Inizializza un oggetto 'selectedUser' (rappresenta l'utente selezionato)
-  isInserting = true;  // Inizializza una variabile booleana 'isInserting (verifica se l'utente è stato inserito)
-  isEditing = false;  // Inizializza una variabile booleana 'isEditing' (verifica se l'utente è stato modificato)
+  isInserting = true;  // Verifica se l'utente è stato inserito
+  isEditing = false;  // Verifica se l'utente è stato modificato
   newUser: any = {};  // Inizializza un nuovo utente 'newUser' (rappresenta il nuovo utente da aggiungere)
 
   // INIETTA I SERVIZI NEL COSTRUTTORE
@@ -27,10 +27,41 @@ export class AppComponent implements OnInit{
     this.loadUsers();  // Chiama la funzione 'loadUsers' al momento dell'inizializzazione del componente
   }
 
-  // CARICA LA LISTA DEGLI UTENTI ALL'INIZIO
-  async loadUsers() {
-    this.users = await this.userService.getUsers();  // Assegna all'array 'users' la lista degli utenti ottenuta dal servizio
-  }
+// CARICA LA LISTA DEGLI UTENTI ALL'INIZIO E ORDINA PER NOME E COGNOME
+async loadUsers() {
+  this.users = await this.userService.getUsers(); // Assegna all'array 'users' la lista degli utenti ottenuta dal servizio
+// ----------------------------------------------------------------------------------------->
+  // Ordina gli utenti per nome
+  this.users = this.users.sort((a, b) => {
+    const nameA = a.nome.toUpperCase(); // Converte il nome dell'utente 'a' in maiuscolo
+    const nameB = b.nome.toUpperCase(); // Converte il nome dell'utente 'b' in maiuscolo
+
+    // Compara i nomi in ordine alfabetico
+    if (nameA < nameB) {
+      return -1; // Restituisce un valore negativo se il nome di 'a' è prima di quello di 'b'
+    }
+    if (nameA > nameB) {
+      return 1; // Restituisce un valore positivo se il nome di 'b' è prima di quello di 'a'
+    }
+    return 0; // Restituisce zero se i nomi sono uguali
+  });
+  // ----------------------------------------------------------------------------------------->
+  // Ordina gli utenti per cognome
+  this.users = this.users.sort((a, b) => {
+    const surnameA = a.cognome.toUpperCase(); // Converte il cognome dell'utente 'a' in maiuscolo
+    const surnameB = b.cognome.toUpperCase(); // Converte il cognome dell'utente 'b' in maiuscolo
+
+    // Compara i cognomi in ordine alfabetico
+    if (surnameA < surnameB) {
+      return -1; // Restituisce un valore negativo se il cognome di 'a' è prima di quello di 'b'
+    }
+    if (surnameA > surnameB) {
+      return 1; // Restituisce un valore positivo se il cognome di 'b' è prima di quello di 'a'
+    }
+    return 0; // Restituisce zero se i cognomi sono uguali
+  });
+}
+
 
   // ----------------------------------------------------------------------------------------->
   // => INSERIMENTO:
@@ -53,7 +84,7 @@ export class AppComponent implements OnInit{
     this.isEditing = true;  // Imposta 'isEditing' a true
   }
 
-  // SALVA LE MODIFIHE APPORTATE ALL'UTENTE
+  // SALVA LE MODIFICHE APPORTATE ALL'UTENTE
   async saveChanges() {
     await this.userService.updateUser(this.selectedUser);
     this.isEditing = false;  // Imposta 'isEditing' a false
